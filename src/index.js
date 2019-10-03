@@ -17,21 +17,21 @@ module.exports = function zeros(expression) {
   }
 
   for (let index = 0; index < singleFactorials.length; index++) {
-    factorials.push(BigInt(doSingleFactorial(singleFactorials[index])))
+    factorials.push(doSingleFactorial(singleFactorials[index]))
   }
 
   for (let index = 0; index < doubleFactorials.length; index++) {
-    factorials.push(BigInt(doDoubleFactorial(doubleFactorials[index])))
+    factorials.push(doDoubleFactorial(doubleFactorials[index]))
   }
 
   function doSingleFactorial(number){
-    return (number != 1) ? number * doSingleFactorial(number - 1) : 1;
+    return (BigInt(number) != BigInt(1)) ? BigInt(number) * doSingleFactorial(BigInt(number) - BigInt(1)) : BigInt(1);
   }
   function doDoubleFactorial(number){
-    if (number % 2 === 0) {
-      return (number != 2) ? number * doDoubleFactorial(number - 2) : doSingleFactorial(2);
+    if (BigInt(number) % BigInt(2) === BigInt(0)) {
+      return (BigInt(number) != BigInt(2)) ? BigInt(number) * doDoubleFactorial(BigInt(number) - BigInt(2)) : doSingleFactorial(BigInt(2));
     } else {
-      return (number != 1) ? number * doDoubleFactorial(number - 2) : 1;
+      return (BigInt(number) != BigInt(1)) ? BigInt(number) * doDoubleFactorial(BigInt(number) - BigInt(2)) : BigInt(1);
     }
   }
   
